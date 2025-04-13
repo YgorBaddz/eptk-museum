@@ -1,4 +1,4 @@
-"use client"; // Important: This makes it a Client Component
+"use client";
 
 import { getUsers } from "@/utils/getUsers";
 import { useQuery } from "@tanstack/react-query";
