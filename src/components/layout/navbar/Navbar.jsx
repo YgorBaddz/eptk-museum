@@ -31,11 +31,11 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="relative flex justify-between items-center py-4 bg-gray-900 text-white shadow-md">
-      <div className="container mx-auto flex justify-between items-center">
+    <nav className="relative px-2 flex justify-between items-center text-white">
+      <div className="container mx-auto flex items-center justify-center">
         <Link href="/">
-          <p className="text-lg font-bold tracking-wider cursor-pointer">
-            Главная
+          <p className="text-lg font-bold tracking-wider cursor-pointer flex items-center justify-center bg-[#CF9056] hover:bg-[#c18043] duration-150 rounded-sm w-[100px] h-[100px] mr-4">
+            ПОЛИТЕХ
           </p>
         </Link>
 
