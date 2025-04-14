@@ -2,7 +2,7 @@ import PhotoSlider from "../PhotoSlider";
 
 const TeacherCard = ({ teacher }) => {
   return (
-    <div className="bg-[#CF9056] shadow-md rounded-lg p-4 w-full md:w-1/2 xl:w-1/3">
+    <div className="bg-[#CF9056] duration-300 hover:-translate-y-2 shadow-lg hover:shadow-[#c18043] rounded-lg p-4 w-full md:w-1/2 xl:w-1/3">
       {teacher.photos && teacher.photos.length > 0 && (
         <PhotoSlider photos={teacher.photos} />
       )}
