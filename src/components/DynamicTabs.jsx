@@ -9,30 +9,22 @@ export default function DynamicTabs({ collections }) {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      try {
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/api/${activeTab.api}?populate=*`
-        );
-        const data = await res.json();
-        setContent(Array.isArray(data.data) ? data.data : []);
-      } catch (error) {
+    setIsLoading(true);
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/${activeTab.api}?populate=*`)
+      .then((res) => res.json())
+      .then((data) => setContent(Array.isArray(data.data) ? data.data : []))
+      .catch((error) => {
         console.error("Fetch error:", error);
         setContent([]);
-      }
-      setIsLoading(false);
-    };
-
-    fetchData();
+      })
+      .finally(() => setIsLoading(false));
   }, [activeTab]);
 
   const renderField = (item, field) => {
     const value = item[field.name];
-
     if (value == null) return null;
 
-    if (field.type === "media" && value) {
+    if (field.type === "media") {
       const mediaArr = Array.isArray(value) ? value : [value];
       if (!mediaArr.length || !mediaArr[0]?.url) return null;
       return <PhotoSlider photos={mediaArr} />;
@@ -89,7 +81,7 @@ export default function DynamicTabs({ collections }) {
           <div className="text-center text-gray-500">Данные отсутствуют</div>
         ) : (
           <div className="space-y-4">
-            {(content || []).map((item) => (
+            {content.map((item) => (
               <div
                 key={item.id || item._id}
                 className="p-4 bg-white rounded-lg shadow"
