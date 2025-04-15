@@ -14,7 +14,7 @@ export default function DynamicTabs({ collections }) {
       .then((res) => res.json())
       .then((data) => {
         const allData = Array.isArray(data.data) ? data.data : [];
-        // Если есть фильтр, применяем его
+        // Применяем фильтр для текущей вкладки
         const filteredData = activeTab.filter
           ? allData.filter(activeTab.filter)
           : allData;
@@ -46,13 +46,14 @@ export default function DynamicTabs({ collections }) {
               {typeof el === "object"
                 ? el.name || JSON.stringify(el)
                 : String(el)}
-              {idx < value.length - 1 ? " |" : ""}
+              {idx < value.length - 1 ? "|" : ""}
             </span>
           ))}
         </div>
       );
     }
 
+    // Для остальных полей выводим текст
     return (
       <p className="mt-2 text-white">
         <strong>{field.label || field.name}: </strong>
