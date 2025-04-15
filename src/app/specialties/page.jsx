@@ -1,5 +1,5 @@
-const Specialties = () => {
-  return <div>Specialties</div>;
+const SpecialtiesPage = () => {
+  return <div>SpecialtiesPage</div>;
 };
 
-export default Specialties;
+export default SpecialtiesPage;

@@ -10,7 +10,7 @@ export default function DynamicTabs({ collections }) {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch(`http://localhost:1337/api/${activeTab.api}?populate=*`)
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/${activeTab.api}?populate=*`)
       .then((res) => res.json())
       .then((data) => {
         const allData = Array.isArray(data.data) ? data.data : [];
