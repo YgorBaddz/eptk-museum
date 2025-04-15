@@ -31,7 +31,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="relative px-2 flex justify-between items-center text-white">
+    <nav className="relative z-[99999] px-2 flex justify-between items-center text-white">
       <div className="container mx-auto flex items-center justify-center">
         <Link href="/">
           <p className="text-lg font-bold tracking-wider cursor-pointer flex items-center justify-center bg-[#CF9056] hover:bg-[#c18043] duration-150 rounded-sm w-[100px] h-[100px] mr-4">
