@@ -32,20 +32,23 @@ export default function DynamicTabs({ collections }) {
 
     if (field.type === "array" && Array.isArray(value)) {
       return (
-        <ul className="list-disc ml-5 mt-2">
+        <div className="flex gap-1 flex-wrap text-white">
+          {field.label}:&nbsp;
           {value.map((el, idx) => (
-            <li key={el.id || idx}>
+            <span key={el.id || idx} className="mr-1">
               {typeof el === "object"
                 ? el.name || JSON.stringify(el)
                 : String(el)}
-            </li>
+              {idx < value.length - 1 ? " |" : ""}
+            </span>
           ))}
-        </ul>
+        </div>
       );
     }
 
+    // Для остальных полей выводим текст с белым цветом
     return (
-      <p className="mt-2 text-gray-600">
+      <p className="mt-2 text-white">
         <strong>{field.label || field.name}: </strong>
         {typeof value === "string" || typeof value === "number"
           ? value
@@ -56,15 +59,15 @@ export default function DynamicTabs({ collections }) {
 
   return (
     <div className="max-w-4xl mx-auto">
-      <div className="flex space-x-2 border-b border-gray-200">
+      <div className="flex flex-wrap items-center justify-center space-x-2 border-b border-gray-200">
         {collections.map((collection) => (
           <button
             key={collection.api}
             onClick={() => setActiveTab(collection)}
             className={`px-4 py-2 text-sm font-medium ${
               activeTab.api === collection.api
-                ? "text-blue-600 border-b-2 border-blue-600"
-                : "text-gray-500 hover:text-gray-700"
+                ? "text-[#CF9056] border-b-2 border-[#CF9056]"
+                : "text-gray-500 hover:text-gray-300"
             }`}
           >
             {collection.label}
@@ -74,21 +77,33 @@ export default function DynamicTabs({ collections }) {
 
       <div className="py-4">
         {isLoading ? (
-          <div className="animate-pulse text-center text-gray-500">
+          <div className="animate-pulse text-center text-[#CF9056]">
             Загрузка...
           </div>
         ) : content.length === 0 ? (
-          <div className="text-center text-gray-500">Данные отсутствуют</div>
+          <div className="text-center text-[#CF9056]">Данные отсутствуют</div>
         ) : (
-          <div className="space-y-4">
+          <div className="flex flex-col items-center justify-center gap-6">
             {content.map((item) => (
               <div
                 key={item.id || item._id}
-                className="p-4 bg-white rounded-lg shadow"
+                className="bg-[#CF9056] hover:bg-[#c18043] duration-300 shadow-lg hover:shadow-[#CF9056] rounded-lg p-4 w-full md:w-[600px]"
               >
-                {activeTab.fields.map((field) => (
-                  <div key={field.name}>{renderField(item, field)}</div>
-                ))}
+                {/* Рендерим фото через PhotoSlider, если есть */}
+                {item.photos && item.photos.length > 0 && (
+                  <PhotoSlider photos={item.photos} />
+                )}
+
+                <div className="flex flex-col gap-2 mt-4 text-white">
+                  {/* Рендерим поля кроме photos отдельно */}
+                  {activeTab.fields
+                    .filter((field) => field.name !== "photos")
+                    .map((field) => (
+                      <div className="text-lg" key={field.name}>
+                        {renderField(item, field)}
+                      </div>
+                    ))}
+                </div>
               </div>
             ))}
           </div>
