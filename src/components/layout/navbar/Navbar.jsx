@@ -5,10 +5,10 @@ import MenuItem from "./MenuItem";
 
 const menuItems = [
   { href: "/history", label: "История" },
-  { href: "/teachers", label: "Преподаватели" },
+  { href: "/staff", label: "Кадровый состав" },
   { href: "/specialties", label: "Специальности" },
-  { href: "/contact", label: "Связь" },
-  { href: "/misc", label: "Разное" },
+  { href: "/graduates", label: "Выпускники" },
+  { href: "/achievements", label: "Достижения" },
 ];
 
 const Navbar = () => {
