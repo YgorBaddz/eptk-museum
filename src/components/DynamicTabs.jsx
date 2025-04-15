@@ -12,7 +12,14 @@ export default function DynamicTabs({ collections }) {
     setIsLoading(true);
     fetch(`http://localhost:1337/api/${activeTab.api}?populate=*`)
       .then((res) => res.json())
-      .then((data) => setContent(Array.isArray(data.data) ? data.data : []))
+      .then((data) => {
+        const allData = Array.isArray(data.data) ? data.data : [];
+        // Если есть фильтр, применяем его
+        const filteredData = activeTab.filter
+          ? allData.filter(activeTab.filter)
+          : allData;
+        setContent(filteredData);
+      })
       .catch((error) => {
         console.error("Fetch error:", error);
         setContent([]);
@@ -46,7 +53,6 @@ export default function DynamicTabs({ collections }) {
       );
     }
 
-    // Для остальных полей выводим текст с белым цветом
     return (
       <p className="mt-2 text-white">
         <strong>{field.label || field.name}: </strong>
@@ -62,10 +68,10 @@ export default function DynamicTabs({ collections }) {
       <div className="flex flex-wrap items-center justify-center space-x-2 border-b border-gray-200">
         {collections.map((collection) => (
           <button
-            key={collection.api}
+            key={collection.label}
             onClick={() => setActiveTab(collection)}
             className={`px-4 py-2 text-sm font-medium ${
-              activeTab.api === collection.api
+              activeTab.label === collection.label
                 ? "text-[#CF9056] border-b-2 border-[#CF9056]"
                 : "text-gray-500 hover:text-gray-300"
             }`}
@@ -89,20 +95,18 @@ export default function DynamicTabs({ collections }) {
                 key={item.id || item._id}
                 className="bg-[#CF9056] hover:bg-[#c18043] duration-300 shadow-lg hover:shadow-[#CF9056] rounded-lg p-4 w-full md:w-[600px]"
               >
-                {/* Рендерим фото через PhotoSlider, если есть */}
+                {/* Фото */}
                 {item.photos && item.photos.length > 0 && (
                   <PhotoSlider photos={item.photos} />
                 )}
 
+                {/* Контент */}
                 <div className="flex flex-col gap-2 mt-4 text-white">
-                  {/* Рендерим поля кроме photos отдельно */}
-                  {activeTab.fields
-                    .filter((field) => field.name !== "photos")
-                    .map((field) => (
-                      <div className="text-lg" key={field.name}>
-                        {renderField(item, field)}
-                      </div>
-                    ))}
+                  {activeTab.fields.map((field) => (
+                    <div className="text-lg" key={field.name}>
+                      {renderField(item, field)}
+                    </div>
+                  ))}
                 </div>
               </div>
             ))}
