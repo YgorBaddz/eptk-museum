@@ -6,9 +6,9 @@ const StaffPage = () => {
       label: "Руководители учебного заведения",
       api: "teachers",
       fields: [
+        { name: "photos", type: "media", label: "Фото" },
         { name: "name", type: "string", label: "ФИО" },
         { name: "description", type: "string", label: "Описание" },
-        { name: "photos", type: "media", label: "Фото" },
         { name: "period_start", type: "string", label: "Начало работы" },
         { name: "period_end", type: "string", label: "Конец работы" },
         { name: "specialties", type: "array", label: "Специальности" },
@@ -18,9 +18,9 @@ const StaffPage = () => {
       label: "Ветераны педагогического труда",
       api: "veteran-jobs",
       fields: [
+        { name: "photos", type: "media", label: "Фото" },
         { name: "name", type: "string", label: "ФИО" },
         { name: "description", type: "string", label: "Должности" },
-        { name: "photos", type: "media", label: "Фото" },
         { name: "period_start", type: "string", label: "Начало работы" },
         { name: "period_end", type: "string", label: "Конец работы" },
         { name: "specialties", type: "array", label: "Специальности" },
@@ -30,18 +30,18 @@ const StaffPage = () => {
       label: "Участники ВОВ и локальных войн",
       api: "war-competitors",
       fields: [
+        { name: "photos", type: "media", label: "Фото" },
         { name: "name", type: "string", label: "ФИО" },
         { name: "description", type: "string", label: "Описание" },
-        { name: "photos", type: "media", label: "Фото" },
       ],
     },
     {
       label: "Кадровый состав на данный момент",
       api: "current-staffs",
       fields: [
+        { name: "photos", type: "media", label: "Фото" },
         { name: "name", type: "string", label: "ФИО" },
         { name: "description", type: "string", label: "Должности" },
-        { name: "photos", type: "media", label: "Фото" },
         { name: "period_start", type: "string", label: "Начало работы" },
         { name: "specialties", type: "array", label: "Специальности" },
       ],

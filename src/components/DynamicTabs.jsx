@@ -14,7 +14,6 @@ export default function DynamicTabs({ collections }) {
       .then((res) => res.json())
       .then((data) => {
         const allData = Array.isArray(data.data) ? data.data : [];
-        // Применяем фильтр для текущей вкладки
         const filteredData = activeTab.filter
           ? allData.filter(activeTab.filter)
           : allData;
@@ -53,7 +52,6 @@ export default function DynamicTabs({ collections }) {
       );
     }
 
-    // Для остальных полей выводим текст
     return (
       <p className="mt-2 text-white">
         <strong>{field.label || field.name}: </strong>
@@ -96,11 +94,6 @@ export default function DynamicTabs({ collections }) {
                 key={item.id || item._id}
                 className="bg-[#CF9056] hover:bg-[#c18043] duration-300 shadow-lg hover:shadow-[#CF9056] rounded-lg p-4 w-full md:w-[600px]"
               >
-                {/* Фото */}
-                {item.photos && item.photos.length > 0 && (
-                  <PhotoSlider photos={item.photos} />
-                )}
-
                 {/* Контент */}
                 <div className="flex flex-col gap-2 mt-4 text-white">
                   {activeTab.fields.map((field) => (
