@@ -23,7 +23,7 @@ const cards = [
     title: "История колледжа",
     description:
       "Погрузитесь в богатую историю и традиции Элистинского Политехнического Колледжа.",
-    image: "/history.jpg",
+    image: "/history-primary.jpg",
     href: "/history",
   },
   {
