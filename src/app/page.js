@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <main className="relative h-screen w-full">
       {/* Фоновое изображение с оверлеем */}
-      <div className="relative h-1/2 w-full">
+      <section className="relative h-1/2 w-full">
         <Image
           src="/main-bg.jpg"
           alt="Background"
@@ -37,7 +37,22 @@ export default function Home() {
             Узнать больше
           </Link>
         </div>
-      </div>
+      </section>
+
+      <section className="h-1/2 flex items-center justify-center">
+        <h4 className="text-white max-w-[600px] text-center text-xl lg:text-3xl">
+          Мы <span className="text-[#CF9056]">сохраняем </span>и
+          <span className="text-[#CF9056]"> передаем </span>
+          будущим поколениям память о
+          <span className="text-[#CF9056]"> педагогах</span>,
+          <span className="text-[#CF9056]"> студентах </span>и важных
+          <span className="text-[#CF9056]"> событиях </span>
+          колледжа. <br />
+          Наш музей - это живая
+          <span className="text-[#CF9056]"> история </span>
+          технического образования и человеческих достижений.
+        </h4>
+      </section>
     </main>
   );
 }
