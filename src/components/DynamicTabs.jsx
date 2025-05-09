@@ -45,7 +45,7 @@ export default function DynamicTabs({ collections }) {
               {typeof el === "object"
                 ? el.name || JSON.stringify(el)
                 : String(el)}
-              {idx < value.length - 1 ? "|" : ""}
+              {idx < value.length - 1 ? " |" : ""}
             </span>
           ))}
         </div>
