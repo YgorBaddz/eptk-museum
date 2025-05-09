@@ -33,6 +33,26 @@ const AchievementsPage = () => {
       ],
       filter: (item) => item.isSciense,
     },
+    {
+      label: "Профессионал",
+      api: "student-springs",
+      fields: [
+        { name: "description", type: "string", label: "Описание" },
+        { name: "photos", type: "media", label: "Фото" },
+        { name: "year", type: "string", label: "Год" },
+      ],
+      filter: (item) => item.isProfessional,
+    },
+    {
+      label: "WorldSkills",
+      api: "student-springs",
+      fields: [
+        { name: "description", type: "string", label: "Описание" },
+        { name: "photos", type: "media", label: "Фото" },
+        { name: "year", type: "string", label: "Год" },
+      ],
+      filter: (item) => item.isWorldSkills,
+    },
   ];
 
   return (
