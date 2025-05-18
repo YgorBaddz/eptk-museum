@@ -44,7 +44,7 @@ const cards = [
 
 export default function Home() {
   return (
-    <main className="w-full text-white">
+    <main className="w-full text-[#2C3E50]">
       <HeroSection />
       <DescriptionSection />
       <CardsGrid cards={cards} />

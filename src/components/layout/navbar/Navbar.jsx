@@ -31,10 +31,10 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="relative z-[99999] px-2 flex justify-between items-center text-white">
+    <nav className="relative z-[99999] px-2 flex justify-between items-center text-[#E67E22]">
       <div className="container mx-auto flex items-center justify-center">
         <Link href="/">
-          <p className="text-lg font-bold tracking-wider cursor-pointer flex items-center justify-center bg-[#CF9056] hover:bg-[#c18043] duration-150 rounded-sm w-[100px] h-[100px] mr-4">
+          <p className="text-lg text-white font-bold tracking-wider cursor-pointer flex items-center justify-center bg-[#E67E22] hover:bg-[#ee872e] duration-150 rounded-sm p-2 mr-4">
             ПОЛИТЕХ
           </p>
         </Link>
@@ -48,7 +48,7 @@ const Navbar = () => {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden flex justify-center items-center w-8 h-8 bg-gray-700 hover:bg-gray-600 rounded-full transition duration-200 ease-in-out"
+          className="md:hidden flex justify-center items-center w-8 h-8 bg-[#E67E22] hover:bg-[#ee872e] rounded-full transition duration-200 ease-in-out"
           onClick={toggleMenu}
           aria-label="Toggle menu"
         >
@@ -87,7 +87,7 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         <div
-          className={`md:hidden absolute top-full left-0 right-0 bg-gray-900 transition-all duration-300 ease-in-out overflow-hidden ${
+          className={`md:hidden absolute top-full left-0 right-0 bg-[#E67E22] text-white transition-all duration-300 ease-in-out overflow-hidden ${
             isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
           }`}
         >

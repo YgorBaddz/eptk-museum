@@ -4,7 +4,7 @@ import Link from "next/link";
 // Компонент отдельной карточки
 function Card({ title, description, image, href }) {
   return (
-    <div className="bg-gray-900 rounded-lg overflow-hidden shadow-lg flex flex-col">
+    <div className="bg-white rounded-lg overflow-hidden shadow-lg flex flex-col">
       <div className="relative h-48 w-full">
         <Image
           src={image}
@@ -17,10 +17,10 @@ function Card({ title, description, image, href }) {
       </div>
       <div className="p-4 flex flex-col flex-grow">
         <h3 className="text-xl font-semibold mb-2">{title}</h3>
-        <p className="text-gray-300 flex-grow">{description}</p>
+        <p className="text-[#2C3E50] flex-grow">{description}</p>
         <Link
           href={href}
-          className="mt-4 inline-block px-4 py-2 bg-[#CF9056] rounded-full text-black font-bold text-center hover:bg-[#c18043] duration-300"
+          className="mt-4 inline-block px-4 py-2 bg-[#E67E22] rounded-full text-white font-bold text-center hover:bg-[#ee872e] duration-300"
         >
           Подробнее
         </Link>
