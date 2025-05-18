@@ -15,7 +15,7 @@ const History = () => {
         />
       </div>
 
-      <h1 className="text-4xl font-bold mb-8 text-center text-justify">
+      <h1 className="text-4xl font-bold mb-8 text-justify">
         История Элистинского политехнического колледжа имени И.Н. Эльвартынова
       </h1>
 
