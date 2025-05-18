@@ -1,3 +1,4 @@
+import * as motion from "motion/react-client";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -12,7 +13,12 @@ function HeroSection() {
         quality={100}
       />
       <div className="absolute inset-0 bg-white opacity-60"></div>
-      <div className="relative z-10 flex flex-col items-center justify-center text-center px-4 gap-6">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="relative z-10 flex flex-col items-center justify-center text-center px-4 gap-6"
+      >
         <h1 className="text-2xl lg:text-4xl font-bold">
           Музей Элистинского Политехнического Колледжа <br />
           имени Эльвартынова И.Н
@@ -28,7 +34,7 @@ function HeroSection() {
         >
           Узнать больше
         </Link>
-      </div>
+      </motion.div>
     </section>
   );
 }

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import * as motion from "motion/react-client";
 
 const timelineData = [
   {
@@ -33,11 +34,34 @@ const timelineData = [
   },
 ];
 
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, easing: "ease-out" },
+  },
+};
+
+const lineVariants = {
+  hidden: { scaleY: 0 },
+  visible: {
+    scaleY: 1,
+    transition: { duration: 0.6, easing: "ease-out" },
+  },
+};
+
 const History = () => {
   return (
-    <section className="max-w-6xl mx-auto px-6 py-12 text-[#2C3E50]">
-      {/* Обёртка для изображения с центровкой */}
-      <div className="w-full max-w-4xl mx-auto mb-10 rounded-lg overflow-hidden shadow-lg">
+    <motion.section className="max-w-6xl mx-auto px-6 py-12 text-[#2C3E50]">
+      {/* Обёртка для изображения с текстом */}
+      <motion.div
+        className="relative w-full max-w-4xl mx-auto mb-10 rounded-lg overflow-hidden shadow-lg"
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.6, easing: "ease-out" }}
+      >
         <Image
           src="/history.jpg"
           alt="Фото колледжа"
@@ -46,39 +70,88 @@ const History = () => {
           className="w-full h-auto object-cover object-center"
           priority
         />
-      </div>
+        <div className="absolute left-4 bottom-4 bg-[#E67E22] bg-opacity-60 text-white rounded-md px-4 py-2 max-w-xl shadow-lg">
+          <p className="text-base sm:text-lg font-bold">
+            Элистинский политехнический колледж
+          </p>
 
-      <h1 className="text-2xl lg:text-4xl font-bold mb-8 max-w-4xl mx-auto">
+          <p className="text-sm sm:text-base font-semibold">
+            Учебное заведение с богатой историей
+          </p>
+        </div>
+      </motion.div>
+
+      <motion.h1
+        className="text-2xl lg:text-4xl font-bold mb-8 max-w-4xl mx-auto"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.6, easing: "ease-out" }}
+      >
         История Элистинского политехнического колледжа имени И.Н. Эльвартынова
-      </h1>
+      </motion.h1>
 
-      {/* Вступительный абзац без timeline */}
-      <div className="bg-white rounded-lg p-6 mb-10 shadow-md max-w-4xl mx-auto">
+      <motion.div
+        className="bg-white rounded-lg p-6 mb-10 shadow-md max-w-4xl mx-auto"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.6, easing: "ease-out" }}
+      >
         <p className="leading-relaxed text-justify">
           Элистинский политехнический колледж - учебное заведение с богатой
           историей, сыгравшее ключевую роль в подготовке квалифицированных
           специалистов для Республики Калмыкия.
         </p>
-      </div>
+      </motion.div>
 
-      {/* Timeline */}
+      {/* Timeline с анимацией каждого элемента при попадании в viewport */}
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6">
         {/* Вертикальная линия для md+ */}
-        <div className="hidden md:block absolute left-8 top-0 bottom-0 w-1 bg-[#E67E22] opacity-30 mx-auto"></div>
+        <motion.div
+          className="hidden md:block absolute left-8 top-0 bottom-0 w-[2px] bg-[#E67E22] origin-top opacity-30 mx-auto"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={lineVariants}
+        />
 
         {timelineData.map(({ year, title, text }, index) => (
-          <div
+          <motion.div
             key={year}
             className="flex flex-col md:flex-row items-start mb-12 relative"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={itemVariants}
+            transition={{ delay: index * 0.2 }}
           >
             {/* Точка и линия вниз (для md+) */}
             <div className="flex md:flex-col items-center md:mr-8 mb-4 md:mb-0">
-              {/* Точка */}
-              <div className="w-6 h-6 rounded-full bg-[#E67E22] border-4 border-white z-10 relative"></div>
-
-              {/* Линия вниз (только для md и не у последнего элемента) */}
+              <motion.div
+                className="w-6 h-6 rounded-full bg-[#E67E22] border-4 border-white z-10 relative"
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{
+                  delay: index * 0.2,
+                  duration: 0.4,
+                  easing: "ease-out",
+                }}
+              />
               {index !== timelineData.length - 1 && (
-                <div className="hidden md:block flex-1 w-1 bg-[#E67E22] opacity-30"></div>
+                <motion.div
+                  className="hidden md:block flex-1 w-[2px] bg-[#E67E22] opacity-30"
+                  initial={{ scaleY: 0 }}
+                  whileInView={{ scaleY: 1 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{
+                    delay: index * 0.2 + 0.2,
+                    duration: 0.4,
+                    easing: "ease-out",
+                  }}
+                  style={{ originY: 0 }}
+                />
               )}
             </div>
 
@@ -94,20 +167,29 @@ const History = () => {
             <div className="bg-white rounded-lg p-6 shadow-md flex-1 w-full">
               <p className="leading-relaxed text-justify">{text}</p>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
 
-      {/* Заключительный абзац */}
-      <div className="bg-white rounded-lg p-6 mt-10 shadow-md max-w-4xl mx-auto">
+      <motion.div
+        className="bg-white rounded-lg p-6 mt-10 shadow-md max-w-4xl mx-auto"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{
+          delay: timelineData.length * 0.1 + 0.1,
+          duration: 0.4,
+          easing: "ease-out",
+        }}
+      >
         <p className="leading-relaxed text-justify">
           Элистинский политехнический колледж продолжает традиции качественной
           подготовки специалистов, активно участвует в региональных и
           всероссийских конкурсах и чемпионатах, и является опорой
           профессионального образования Калмыкии.
         </p>
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   );
 };
 
