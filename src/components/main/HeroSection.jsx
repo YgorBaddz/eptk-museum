@@ -6,7 +6,7 @@ function HeroSection() {
   return (
     <section className="relative min-h-[550px] w-full flex items-center justify-center py-16 mt-6">
       <Image
-        src="/main-bg.jpg"
+        src="/main-bg.png"
         alt="Background"
         fill
         className="object-cover"
@@ -21,7 +21,7 @@ function HeroSection() {
       >
         <h1 className="text-2xl lg:text-4xl font-bold">
           Музей Элистинского Политехнического Колледжа <br />
-          имени Эльвартынова И.Н
+          имени Эльвартынова И.Н.
         </h1>
         <p className="text-lg md:text-2xl max-w-3xl font-semibold">
           Сохраняем память о <span className="text-[#E67E22]">педагогах</span>,{" "}
